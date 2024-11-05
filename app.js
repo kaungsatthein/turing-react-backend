@@ -6,10 +6,13 @@ const logger = require('morgan');
 const port = 3000;
 const mongoose = require('mongoose');
 const {db} = require("./config/database")
+const cors = require('cors');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const todosRouter = require('./routes/todos');
+const moviesRouter = require('./routes/movies');
+const reviewsRouter = require('./routes/reviews');
 
 const app = express();
 
@@ -24,10 +27,13 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')))
+app.use(cors());
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/api/todos', todosRouter);
+app.use('/api/movies', moviesRouter);
+app.use('/api/reviews', reviewsRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
