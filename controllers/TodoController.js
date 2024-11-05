@@ -1,11 +1,3 @@
-// let todos = [
-//     {userId: 6, id: 101, title: 'explicabo enim cumque porro aperiam occaecati minima', completed: false},
-//     {userId: 6, id: 102, title: 'sed ab consequatur', completed: false},
-//     {userId: 6, id: 103, title: 'non sunt delectus illo nulla tenetur enim omnis', completed: false},
-//     {userId: 6, id: 104, title: 'excepturi non laudantium quo', completed: false},
-//     {userId: 6, id: 105, title: 'totam quia dolorem et illum repellat voluptas optio', completed: true}
-// ]
-
 const TodoService = require("../services/TodoService")
 
 async function getAllTodos(req, res, next) {

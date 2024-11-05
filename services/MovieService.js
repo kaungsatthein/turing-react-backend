@@ -39,10 +39,19 @@ async function deleteMovieById(id) {
         let deletedMovie = await Movie.findByIdAndDelete(id);
         return deletedMovie;
     }
+}
 
+async function searchMovieByTitle(title) {
+    let movies = await Movie.find({title: {$regex: title, $options: "i"}});
+    return movies;
+}
+
+async function searchMovieByYear(year) {
+    let movies = await Movie.find({year: year});
+    return movies;
 }
 
 
 module.exports = {
-    getAllMovies, getMovieById, createMovie, updateMovieById, deleteMovieById
+    getAllMovies, getMovieById, createMovie, updateMovieById, deleteMovieById, searchMovieByTitle, searchMovieByYear
 }

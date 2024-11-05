@@ -48,6 +48,26 @@ async function deleteMovie(req, res, next) {
     }
 }
 
+async function searchMovieByTitle(req, res, next) {
+    let title = req.params.title;
+    try {
+        let movies = await MovieService.searchMovieByTitle(title)
+        res.status(200).json(movies);
+    } catch (err) {
+        res.status(404).json("Your movie is not available.")
+    }
+}
+
+async function searchMovieByYear(req, res, next) {
+    let year = req.params.year;
+    try {
+        let movies = await MovieService.searchMovieByYear(year)
+        res.status(200).json(movies);
+    } catch (err) {
+        res.status(404).json("Your movie is not available.")
+    }
+}
+
 module.exports = {
-    getAllMovies, getMovieById, createMovie, updateMovie, deleteMovie
+    getAllMovies, getMovieById, createMovie, updateMovie, deleteMovie, searchMovieByTitle, searchMovieByYear
 }
