@@ -6,8 +6,14 @@ async function getAllMovies() {
 }
 
 async function getMovieById(id) {
-    let movie = await Movie.findById(id);
-    return movie;
+    let existingMovie = await Movie.findById(id);
+    if (!existingMovie) {
+        throw new Error("Movie not found");
+    } else {
+        let movie = await Movie.findById(id);
+        return movie;
+    }
+
 }
 
 async function createMovie(movie) {

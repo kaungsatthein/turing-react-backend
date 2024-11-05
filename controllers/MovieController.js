@@ -31,7 +31,7 @@ async function createMovie(req, res, next) {
 async function updateMovie(req, res, next) {
     let id = req.params.id;
     try {
-        let updatedMovie = await MovieService.updatevieById(id, req.body);
+        let updatedMovie = await MovieService.updateMovieById(id, req.body);
         res.status(200).json(updatedMovie);
     } catch (err) {
         res.status(400).json("Your movie is not available.")
