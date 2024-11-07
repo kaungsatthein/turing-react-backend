@@ -7,6 +7,7 @@ const port = 3000;
 const mongoose = require('mongoose');
 const {db} = require("./config/database")
 const cors = require('cors');
+const auth = require("./middleware/auth")
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -31,9 +32,9 @@ app.use(cors());
 
 app.use('/', indexRouter);
 app.use('/api/users', usersRouter);
-app.use('/api/todos', todosRouter);
-app.use('/api/movies', moviesRouter);
-app.use('/api/reviews', reviewsRouter);
+app.use('/api/todos', auth.verifyUserToken, todosRouter);
+app.use('/api/movies', auth.verifyUserToken, moviesRouter);
+app.use('/api/reviews', auth.verifyUserToken, reviewsRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
