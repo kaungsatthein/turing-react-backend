@@ -11,7 +11,7 @@ async function register(req, res, next) {
         const token = jwt.sign(payload, config.TOKEN_SECRET);
         res.status(200).send({token})
     } catch (err) {
-        res.status(400).json({message: "Invalid user data."});
+        res.status(400).json("User already existed");
     }
 }
 
